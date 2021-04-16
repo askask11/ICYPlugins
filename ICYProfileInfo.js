@@ -12,14 +12,16 @@ $(document).ready(function initProfile() {
     //get resource user info
     const userinfo = $(".text-info")[1].children
     const userintohtml = $(".text-info")[1].innerHTML
+    //有时候用户没有成功率和登记率，我们要小心这两样
     var diff = 0
+    //判断是否成功率存在
     if(userintohtml.includes("成功率"))
     {
-        var successrate = userinfo[2].innerHTML.replace("%","")
+        var successrate = userinfo[2].innerHTML.replace("%","") //去掉网页原先自带的符号
 
     }else
     {
-        var successrate = "--"
+        var successrate = "--" // 用户没有注册率，后面的element所有index要加一位弥补空缺
         diff++;
     }
     const date = userinfo[0].innerHTML
@@ -31,6 +33,7 @@ $(document).ready(function initProfile() {
         var receiverate = userinfo[4-diff].innerHTML.replace("%","")
     }else
     {
+        //没有登记率，后面所有ele加一位。
         diff++;
         receiverate="--";
     }
